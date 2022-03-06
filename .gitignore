@@ -2,3 +2,6 @@
 */target
 **/*.class
 **/*.iml
+**/*.PNG
+**/.idea
+**/prezenta
