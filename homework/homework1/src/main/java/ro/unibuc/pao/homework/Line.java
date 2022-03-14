@@ -13,7 +13,21 @@ public class Line {
         this.p2 = p2;
     }
 
-    //TODO: add code here
+    public Point GetP1(){
+        return p1;
+    }
+
+    public void SetP1(Point pt){
+        this.p1=pt;
+    }
+
+    public Point GetP2(){
+        return p2;
+    }
+
+    public void SetP2(Point pt) {
+        this.p2 = pt;
+    }
 
 
 }
