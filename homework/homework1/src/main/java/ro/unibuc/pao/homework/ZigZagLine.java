@@ -1,26 +1,35 @@
 package ro.unibuc.pao.homework;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ZigZagLine extends Line {
 
-    //TODO: add code here
+    private List<Point> pointsList;
 
     public ZigZagLine(List<Point> points) {
-        //TODO: add code here
+        this.pointsList = points;
     }
 
     public ZigZagLine(Point... points) {
-        //TODO: add code here
+        this.pointsList = new ArrayList<Point>(Arrays.asList(points));
     }
 
     public void addPoint(Point point) {
-        //TODO: add code here
+        this.pointsList.add(new Point(point.getX(),point.getY()));
     }
 
     public int getLength() {
-        //TODO: add code here
-        return 0;
+        int size = 0;
+        for (int i = 1; i < this.pointsList.size(); i++) {
+            int y1 = this.pointsList.get(i-1).getY();
+            int y2 = this.pointsList.get(i).getY();
+            int x1 = this.pointsList.get(i-1).getX();
+            int x2 = this.pointsList.get(i).getX();
+            size += Math.sqrt((y2-y1)*(y2-y1) + (x2-x1)*(x2-x1)) ;
+        }
+        return size;
     }
 
 }
