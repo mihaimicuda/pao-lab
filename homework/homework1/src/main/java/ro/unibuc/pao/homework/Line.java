@@ -15,7 +15,6 @@ public class Line {
 
     //TODO: add code here
 
-
     public Point getP1() {
         return p1;
     }
@@ -32,11 +31,4 @@ public class Line {
         this.p2 = p2;
     }
 
-    @Override
-    public String toString() {
-        return "Line{" +
-                "p1=" + p1 +
-                ", p2=" + p2 +
-                '}';
-    }
 }

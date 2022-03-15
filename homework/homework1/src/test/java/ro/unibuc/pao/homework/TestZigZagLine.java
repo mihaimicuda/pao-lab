@@ -17,10 +17,10 @@ public class TestZigZagLine {
     void testAddExtraPoint() {
         ZigZagLine zigZagLine = new ZigZagLine(new Point(0, 0),
                 new Point(0, 1));
-        assertEquals(1, zigZagLine.getLength());
+         assertEquals(1, zigZagLine.getLength());
 
         zigZagLine.addPoint(new Point(1, 1));
-        assertEquals(2, zigZagLine.getLength());
+         assertEquals(2, zigZagLine.getLength());
     }
 
     @Test
@@ -31,7 +31,7 @@ public class TestZigZagLine {
                 new Point(3, 5)
         );
 
-        assertEquals(6, zigZagLine.getLength());
+       assertEquals(6, zigZagLine.getLength());
     }
 
     @Test
