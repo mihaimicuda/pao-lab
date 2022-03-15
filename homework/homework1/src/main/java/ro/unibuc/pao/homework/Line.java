@@ -13,7 +13,6 @@ public class Line {
         this.p2 = p2;
     }
 
-    //TODO: add code here
 
 
 }
