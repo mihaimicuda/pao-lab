@@ -48,4 +48,4 @@ public class TestZigZagLine {
     }
 }
 
-// Test passed : 4
+// Test passed : 4.
