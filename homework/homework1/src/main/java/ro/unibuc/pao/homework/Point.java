@@ -1,4 +1,4 @@
-package ro.unibuc.pao.homework;
+package pao.homework;
 
 public class Point {
 
