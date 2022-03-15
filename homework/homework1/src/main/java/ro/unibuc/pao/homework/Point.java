@@ -25,4 +25,18 @@ public class Point {
     public void setY(int y) {
         this.y = y;
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
+//    public static void main(String[] args) {
+//       Point p = new Point(3,5);
+//        System.out.println(p);
+//
+//    }
 }
