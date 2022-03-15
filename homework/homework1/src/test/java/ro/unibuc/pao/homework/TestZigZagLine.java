@@ -47,3 +47,5 @@ public class TestZigZagLine {
         assertEquals(1, zigZagLine.getLength());
     }
 }
+
+// Test passed : 4
