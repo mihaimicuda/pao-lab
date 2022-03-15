@@ -16,7 +16,7 @@ public class Line {
     }
 
     //distanta dintre doua puncte intr-un sistem cartezian xOy
-    // formula este AB = radical ( (xA - xB)^2 + (yA - yB)^2)
+    // formula este AB = radical ( (xA - xB)^2 + (yA - yB)^2).
     public int lungimeLinie(Point p1, Point p2)
     {
         int lungime;
