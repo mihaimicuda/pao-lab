@@ -1,19 +1,33 @@
 package ro.unibuc.pao.homework;
 
-public class Line {
-    private Point p1;
-    private Point p2;
+public class Point {
+    private int x;
+    private int y;
 
-    public Line() {
-
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+    public Point(Point p)
+    {
+        this.x = p.x;
+        this.y = p.y;
     }
 
-    public Line(Point p1, Point p2) {
-        this.p1 = p1;
-        this.p2 = p2;
+    public int getX() {
+        return x;
     }
 
-    //TODO: add code here
+    public void setX(int x) {
+        this.x = x;
+    }
 
+    public int getY() {
+        return y;
+    }
 
+    public void setY(int y) {
+        this.y = y;
+    }
 }
+
