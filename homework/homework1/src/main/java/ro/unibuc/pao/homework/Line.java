@@ -14,6 +14,20 @@ public class Line {
     }
 
     //TODO: add code here
+    public Point getp1() {
+        return p1;
+    }
 
+    public void setp1(int x) {
+        this.p1 = p1;
+    }
+
+    public Point getp2() {
+        return p2;
+    }
+
+    public void setp2(int y) {
+        this.p2 = p2;
+    }
 
 }
