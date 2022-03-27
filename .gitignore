@@ -5,3 +5,5 @@
 **/*.PNG
 **/.idea
 **/prezenta
+*/out
+

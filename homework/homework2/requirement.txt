@@ -1,0 +1,14 @@
+Please choose 2 of the following design patterns to implement in java:
+1. factory method
+2. strategy 
+3. proxy
+4. builder
+
+You can choose whichever objects you like to implement it.(Cats, Dogs, Cars, Employers, A, B, C,...)
+Create a command line interface to showcase the usage of the implementation.
+
+Google is your friend and will explain each of the patterns(we did builder in class). However, please try to understand how they work.
+
+
+Deadline: April 6th
+
