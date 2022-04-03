@@ -8,7 +8,7 @@ public class ZigZagLine extends Line {
 
     //TODO: add code here
 
-    private ArrayList<Point> points = new ArrayList<Point>();
+    private final ArrayList<Point> points = new ArrayList<Point>();
 
     public ZigZagLine(List<Point> points) {
         //TODO: add code here
@@ -31,12 +31,12 @@ public class ZigZagLine extends Line {
         double lengthSum = 0;
         for (Point p:
              points) {
-            if(lastPoint == null){
+            if(lastPoint == null) {
                 lastPoint = p;
                 continue;
             }
-            double l = Math.sqrt(Math.pow(p.getX() - lastPoint.getX(), 2)+Math.pow(p.getY() - lastPoint.getY(), 2));
-            lengthSum+=l;
+            double l = Math.sqrt(Math.pow(p.getX() - lastPoint.getX(), 2) + Math.pow(p.getY() - lastPoint.getY(), 2));
+            lengthSum += l;
         }
         return (int) lengthSum;
     }
