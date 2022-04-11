@@ -1,26 +1,36 @@
 package ro.unibuc.pao.homework;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ZigZagLine extends Line {
 
-    //TODO: add code here
+    //lista cu punctele liniei in zig zag
+    private final List<Point> puncteZigZag;
 
     public ZigZagLine(List<Point> points) {
-        //TODO: add code here
+        //constructor puncteZigZag
+        this.puncteZigZag= points;
     }
 
-    public ZigZagLine(Point... points) {
-        //TODO: add code here
+    public ZigZagLine(Point... puncteZigZag) {
+        //constructor, alocare zona de memorie
+        this.puncteZigZag= new ArrayList<Point>(Arrays.asList(puncteZigZag));
     }
 
     public void addPoint(Point point) {
-        //TODO: add code here
+        //adaugam inca un punct in linia de zig zag, o prelungim adica
+        puncteZigZag.add(puncteZigZag.size(), point);
     }
 
     public int getLength() {
-        //TODO: add code here
-        return 0;
+        //folosim functia din Line, lungimeLinie
+        int lungimeTotala=0, i;
+        for(i=0;i<puncteZigZag.size()-1;i++)
+            lungimeTotala = lungimeTotala + lungimeLinie(puncteZigZag.get(i), puncteZigZag.get(i+1));
+        return lungimeTotala;
+
     }
 
 }
