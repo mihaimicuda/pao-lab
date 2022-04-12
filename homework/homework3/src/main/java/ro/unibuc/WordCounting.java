@@ -1,10 +1,18 @@
 package ro.unibuc;
 
+import java.util.Scanner;
+
 public class WordCounting {
+    private static int n;
+
     public static void main(String[] args) {
-        FileWordCounter fileWordCounter = new FileWordCounter();
-        //TODO: add code here to read from console and get the length limit
-
-
+        Scanner scan = new Scanner(System.in);
+        System.out.println("The length limit is:");
+        n = scan.nextInt();
     }
+
+    public int getN() {
+        return n;
+    }
+
 }
