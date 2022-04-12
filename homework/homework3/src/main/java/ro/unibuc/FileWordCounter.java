@@ -1,7 +1,11 @@
 package ro.unibuc;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 /**
     TODO:
@@ -12,21 +16,47 @@ import java.util.List;
  */
 public class FileWordCounter {
 
-    //HINT: you could make one generic method to reuse for all three methods above
-    //HINT2: think about functional interfaces, one that verifies things in particular
+    public List<String> count(String fileName, String word, Boolean smaller, Boolean equals, int number) {
+        List<String> wordsList = new ArrayList<String>();
+        List<String> filteredWordsList = new ArrayList<String>();
+        File file = new File(fileName);
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String[] wordsFromLine = scanner.nextLine().split(" ");
+                for(String wordFromLine: wordsFromLine) {
+                    wordsList.add(wordFromLine);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            return Collections.emptyList();
+        }
+        if(smaller || equals) {
+            for(String wordFromList: wordsList) {
+                if ((smaller && wordFromList.length() < number) || (equals && wordFromList.length() == number)) {
+                    filteredWordsList.add(wordFromList);
+                }
+            }
+            return filteredWordsList;
+        } else if (word.length() > 0) {
+            for (String wordFromList : wordsList) {
+                if (wordFromList.replace("!", "").equals(word)) {
+                    filteredWordsList.add(wordFromList);
+                }
+            }
+        }
+        return filteredWordsList;
+    }
 
     public List<String> getSizeOne(String fileName) {
-        //TODO: add code here
-        return Collections.emptyList();
+        return this.count(fileName, "",false, true, 1);
     }
 
     public List<String> getSizeLessThan3(String fileName) {
-        //TODO: add code here
-        return Collections.emptyList();
+        return this.count(fileName, "", true, false, 3);
     }
 
     public List<String> countWordAppearances(String fileName, String word) {
-        //TODO: add code here
-        return Collections.emptyList();
+        return this.count(fileName, word, false, false, 0);
     }
 }
