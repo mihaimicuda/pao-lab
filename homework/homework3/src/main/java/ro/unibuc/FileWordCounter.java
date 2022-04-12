@@ -37,7 +37,6 @@ public class FileWordCounter {
                     filteredWordsList.add(wordFromList);
                 }
             }
-            return filteredWordsList;
         } else if (word.length() > 0) {
             for (String wordFromList : wordsList) {
                 if (wordFromList.replace("!", "").equals(word)) {
