@@ -48,9 +48,9 @@ public class FileWordCounter {
             while (file.hasNextLine()) {
                 String line = file.nextLine();
                 String words[] = line.split(" ");
-                for (String s : words) {
-                    if(s.replace("!", "").equals(word)){
-                        list.add(s);
+                for (String w : words) {
+                    if(w.replace("!", "").equals(word)){
+                        list.add(w);
                     }
                 }
             }
