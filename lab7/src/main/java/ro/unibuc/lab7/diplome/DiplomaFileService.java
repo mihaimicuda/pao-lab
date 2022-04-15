@@ -3,6 +3,7 @@ package ro.unibuc.lab7.diplome;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class DiplomaFileService implements DiplomaService {
@@ -10,7 +11,7 @@ public class DiplomaFileService implements DiplomaService {
     private final File diplomeFile;
 
     public DiplomaFileService() {
-        this.diplomeFile = new File("src/main/resources/diplome.csv");
+        this.diplomeFile = new File("src/main/resources/diplome.dat");
         if(!diplomeFile.exists()) {
             try {
                 diplomeFile.createNewFile();
@@ -107,5 +108,15 @@ public class DiplomaFileService implements DiplomaService {
         }
 
         return diplomeAbsolvent.get(0);
+    }
+
+    @Override
+    public void delete(Diploma diploma) {
+
+    }
+
+    @Override
+    public List<Diploma> findByCustomFilter(Predicate<Diploma> filter) {
+        return null;
     }
 }

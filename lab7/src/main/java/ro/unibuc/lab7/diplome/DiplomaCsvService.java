@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class DiplomaCsvService implements DiplomaService {
@@ -21,6 +22,19 @@ public class DiplomaCsvService implements DiplomaService {
         }
     }
 
+    /**
+     * exceptii:
+     *  - checked: extind Exception; necesita try-catch-finally sau throws
+     *  - uncheked: extind RuntimeException; nu necesita handling
+     *
+     *  best practice: wrap checked exceptions inside an unchecked exceptions
+     *
+     *  try {
+     *      ...
+     *  } catch(IOException e) {
+     *      throw new RuntimeException(e);
+     *  }
+     */
     @Override
     public void save(Diploma diploma) {
         FileWriter fileWriter= null;
@@ -29,11 +43,34 @@ public class DiplomaCsvService implements DiplomaService {
             fileWriter = new FileWriter(diplomeFile, true);
             bufferedWriter = new BufferedWriter(fileWriter);
 
-            bufferedWriter.write(formatForCsv(diploma));
-            bufferedWriter.write("\n");
+            //TODO: check if diploma already exists
+            //it already exists if absolvent + an + serie match
+//            List<Diploma> allDiplomas = getAll().stream()
+//                    .filter(storedDiploma -> storedDiploma.getAn() == diploma.getAn() &&
+//                                            storedDiploma.getSerie().equals(diploma.getSerie()) &&
+//                                            storedDiploma.getAbsolvent().equals(diploma.getAbsolvent())
+//                            )
+//                    .collect(Collectors.toList());
+//
+//            if(allDiplomas.size() == 0) {
+//                bufferedWriter.write(formatForCsv(diploma));
+//                bufferedWriter.write("\n");
+//            }
+
+            boolean diplomaAlreadyExists = getAll().stream()
+                    .anyMatch(storedDiploma -> storedDiploma.getAn() == diploma.getAn() &&
+                            storedDiploma.getSerie().equals(diploma.getSerie()) &&
+                            storedDiploma.getAbsolvent().equals(diploma.getAbsolvent())
+                    );
+
+            if(!diplomaAlreadyExists) {
+                bufferedWriter.write(formatForCsv(diploma));
+                bufferedWriter.write("\n");
+            }
+
             bufferedWriter.close();
         } catch (Exception e) {
-
+            throw new RuntimeException(e);
         } finally {
             if(fileWriter != null) {
                 try {
@@ -53,25 +90,35 @@ public class DiplomaCsvService implements DiplomaService {
 
     @Override
     public Diploma getByAbsolvent(String absolvent) {
-        try {
-            FileReader fileReader = new FileReader(diplomeFile);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+        Optional<Diploma> diplomaOptional = getAll().stream()
+                .filter(diploma -> diploma.getAbsolvent().equals(absolvent))
+                .findFirst();
 
-
-            //lines -> Diploma -> diploma indeplineste conditia?(absolvent) -> getFirst
-            Optional<Diploma> diplomaOptional = bufferedReader.lines()
-                    .map(line -> getDiplomaFromCsvLine(line))
-                    .filter(diploma -> diploma.getAbsolvent().equals(absolvent))
-                    .findFirst();
-
-            if(diplomaOptional.isPresent()) {
-                return diplomaOptional.get();
-            }
-        } catch (Exception e) {
-
+        if(diplomaOptional.isPresent()) {
+            return diplomaOptional.get();
         }
 
         return null;
+
+//        try {
+//            FileReader fileReader = new FileReader(diplomeFile);
+//            BufferedReader bufferedReader = new BufferedReader(fileReader);
+//
+//
+//            //lines -> Diploma -> diploma indeplineste conditia?(absolvent) -> getFirst
+//            Optional<Diploma> diplomaOptional = bufferedReader.lines()
+//                    .map(line -> getDiplomaFromCsvLine(line))
+//                    .filter(diploma -> diploma.getAbsolvent().equals(absolvent))
+//                    .findFirst();
+//
+//            if(diplomaOptional.isPresent()) {
+//                return diplomaOptional.get();
+//            }
+//        } catch (Exception e) {
+//
+//        }
+//
+//        return null;
     }
 
     @Override
@@ -94,41 +141,89 @@ public class DiplomaCsvService implements DiplomaService {
 
     @Override
     public List<Diploma> findDiplomasBetweenYears(int start, int end) {
-        try {
-            FileReader fileReader = new FileReader(diplomeFile);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            List<Diploma> diplome = bufferedReader.lines()
-                    .map(line -> getDiplomaFromCsvLine(line))
-                    .filter(diploma -> diploma.getAn() >= start && diploma.getAn() <= end)
-                    .collect(Collectors.toList());
+        return getAll().stream()
+                .filter(diploma -> diploma.getAn() >= start && diploma.getAn() <= end)
+                .collect(Collectors.toList());
 
-            return diplome;
-        } catch (Exception e) {
+//        try {
+//            FileReader fileReader = new FileReader(diplomeFile);
+//            BufferedReader bufferedReader = new BufferedReader(fileReader);
+//
+//            List<Diploma> diplome = bufferedReader.lines()
+//                    .map(line -> getDiplomaFromCsvLine(line))
+//                    .filter(diploma -> diploma.getAn() >= start && diploma.getAn() <= end)
+//                    .collect(Collectors.toList());
+//
+//            return diplome;
+//        } catch (Exception e) {
+//
+//        }
 
-        }
-
-        return Collections.emptyList();
+//        return Collections.emptyList();
     }
 
     @Override
     public List<Diploma> findAllByPerfectScore() {
-        try {
-            FileReader fileReader = new FileReader(diplomeFile);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+        return getAll().stream()
+                .filter(diploma -> diploma.getMedie() == 10.0)
+                .collect(Collectors.toList());
 
-            List<Diploma> diplome = bufferedReader.lines()
-                    .map(line -> getDiplomaFromCsvLine(line))
-                    .filter(diploma -> diploma.getMedie() == 10.0)
-                    .distinct()
-                    .collect(Collectors.toList());
 
-            return diplome;
-        } catch (Exception e) {
+//        try {
+//            FileReader fileReader = new FileReader(diplomeFile);
+//            BufferedReader bufferedReader = new BufferedReader(fileReader);
+//
+//            List<Diploma> diplome = bufferedReader.lines()
+//                    .map(line -> getDiplomaFromCsvLine(line))
+//                    .filter(diploma -> diploma.getMedie() == 10.0)
+//                    .distinct()
+//                    .collect(Collectors.toList());
+//
+//            return diplome;
+//        } catch (Exception e) {
+//
+//        }
+//
+//        return Collections.emptyList();
+    }
+
+    /*
+    1. parcurgem fiecare linie din fisier
+    2. mapam la obiect de tip diploma
+    3. verificam daca este obiectul nostru
+    4. daca este, atunci il stergem(filtrare)
+    5. outputul este o lista de linii care vor ramane
+    6. scriem outputul inapoi in fisier
+     */
+    @Override
+    public void delete(Diploma diplomaToDelete) {
+        List<Diploma> remainingDiplomas = getAll().stream()
+                .filter(storedDiploma -> storedDiploma.getAn() != diplomaToDelete.getAn() ||
+                        !storedDiploma.getSerie().equals(diplomaToDelete.getSerie()) ||
+                        !storedDiploma.getAbsolvent().equals(diplomaToDelete.getAbsolvent()))
+                .collect(Collectors.toList());
+
+
+        try(FileWriter fileWriter = new FileWriter(diplomeFile, false)) {
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for(Diploma diploma : remainingDiplomas) {
+                bufferedWriter.write(formatForCsv(diploma));
+                bufferedWriter.write("\n");
+            }
+
+            bufferedWriter.close();
+        } catch (IOException e) {
 
         }
+    }
 
-        return Collections.emptyList();
+    @Override
+    public List<Diploma> findByCustomFilter(Predicate<Diploma> filter) {
+        return getAll().stream()
+                .filter(filter)
+                .collect(Collectors.toList());
     }
 
     private Diploma getDiplomaFromCsvLine(String line) {

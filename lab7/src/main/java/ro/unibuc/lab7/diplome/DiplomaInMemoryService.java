@@ -2,6 +2,7 @@ package ro.unibuc.lab7.diplome;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class DiplomaInMemoryService implements DiplomaService {
@@ -40,6 +41,16 @@ public class DiplomaInMemoryService implements DiplomaService {
 
     @Override
     public List<Diploma> findAllByPerfectScore() {
+        return null;
+    }
+
+    @Override
+    public void delete(Diploma diploma) {
+
+    }
+
+    @Override
+    public List<Diploma> findByCustomFilter(Predicate<Diploma> filter) {
         return null;
     }
 }
