@@ -13,7 +13,12 @@ public class Line {
         this.p2 = p2;
     }
 
-    //TODO: add code here
+    public int lengthLine(Point p1, Point p2){
+        int length;
+        length = (int) Math.sqrt(Math.pow(p1.getX()-p2.getX(),2) + Math.pow(p1.getY()-p2.getY(),2));
+        // formula de calcul al distantei unei linii
+        return length;
+    }
 
 
 }
