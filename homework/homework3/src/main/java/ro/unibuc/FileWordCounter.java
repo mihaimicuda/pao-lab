@@ -1,5 +1,11 @@
 package ro.unibuc;
 
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,18 +21,68 @@ public class FileWordCounter {
     //HINT: you could make one generic method to reuse for all three methods above
     //HINT2: think about functional interfaces, one that verifies things in particular
 
-    public List<String> getSizeOne(String fileName) {
-        //TODO: add code here
+    private List<String> getWords(String fileName)
+    {
+        try(FileReader fin = new FileReader(fileName)){
+            int chr = fin.read();
+            StringBuilder sir = new StringBuilder();
+            while(chr != -1) {
+                sir.append((char)chr);
+                chr = fin.read();
+            }
+            List<String> words = Arrays.asList(sir.toString().split("([^a-zA-Z’]+)’*\\1*"));
+            System.out.println(words.get(0));
+            return words;
+        }
+        catch(IOException ex)
+        {
+            System.out.println("File" + fileName + " doesn't exist");
+        }
+
         return Collections.emptyList();
+    }
+
+    public int CountOfLength(String fileName, int length){
+        List<String> words = getWords(fileName);
+        int rez = 0;
+
+        for(String i : words)
+            if(i.length() == length)
+                rez++;
+
+        return rez;
+    }
+
+    public List<String> getSizeOne(String fileName) {
+        List<String> words = getWords(fileName);
+        List<String> rez = new ArrayList<>();
+
+        for(String i : words)
+            if(i.length() == 1)
+                rez.add(i);
+
+        return rez;
     }
 
     public List<String> getSizeLessThan3(String fileName) {
-        //TODO: add code here
-        return Collections.emptyList();
+        List<String> words = getWords(fileName);
+        List<String> rez = new ArrayList<>();
+
+
+        for(String i : words)
+            if(i.length() < 3 && i.length() > 0)
+                rez.add(i);
+
+        return rez;
     }
 
     public List<String> countWordAppearances(String fileName, String word) {
-        //TODO: add code here
-        return Collections.emptyList();
+        List<String> words = getWords(fileName);
+        List<String> rez = new ArrayList<>();
+
+        for(String i : words)
+            if(i.equals(word))
+                rez.add(i);
+        return rez;
     }
 }
