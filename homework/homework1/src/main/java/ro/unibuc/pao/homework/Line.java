@@ -1,5 +1,7 @@
 package ro.unibuc.pao.homework;
 
+import java.util.Objects;
+
 public class Line {
     private Point p1;
     private Point p2;
@@ -15,5 +17,11 @@ public class Line {
 
     //TODO: add code here
 
-
+    @Override
+    public String toString() {
+        return "Line{" +
+                "p1=" + p1 +
+                ", p2=" + p2 +
+                '}';
+    }
 }
