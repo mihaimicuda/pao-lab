@@ -30,8 +30,9 @@ public class FileWordCounter {
              for (String w : words) {
                  if (w.length() < n)
                      list.add(w);
-             }
+              }
          }
+
          file.close();
      } catch(FileNotFoundException e){
          System.out.println("Error");
