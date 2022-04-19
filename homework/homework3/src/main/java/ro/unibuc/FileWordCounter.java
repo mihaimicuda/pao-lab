@@ -6,13 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
-    TODO:
-    scrieti o clasa java care sa returneze toate cuvinetele de lungime > n dintr-un fisier text
-    Lungimea n trebuie introdusa de la tastatura.
-
-    In plus fata de lungime, care trebuie introdusa de la tastatura, putem filtra si dupa alte conditii(vedeti testele)
- */
 public class FileWordCounter {
 
     public List<String> maiMicDecatN(String fileName, int n) throws FileNotFoundException {
