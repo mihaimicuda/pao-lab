@@ -13,7 +13,12 @@ public class Line {
         this.p2 = p2;
     }
 
-    //TODO: add code here
-
-
+    @Override
+    public String toString() {
+        return "Line{" +
+                "p1=" + p1 +
+                ", p2=" + p2 +
+                '}';
+    }
 }
+
