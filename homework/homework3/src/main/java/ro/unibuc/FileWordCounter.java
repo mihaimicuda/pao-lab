@@ -37,13 +37,11 @@ public class FileWordCounter {
                 .collect(Collectors.toList());
     }
 
-
     public List<String> getWordsMoreThanN(String fileName, int n) {
         return findByCustomFilter(fileName, word -> word.length() > n);
     }
 
     public List<String> getSizeOne(String fileName) {
-
         return findByCustomFilter(fileName, word -> word.length() == 1);
     }
 
