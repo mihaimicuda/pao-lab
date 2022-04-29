@@ -51,7 +51,7 @@ public class Order {
         return "Order{" +
                 "addressOfDelivery=" + addressOfDelivery.toString() +
                 ", addressOfTake=" + addressOfTake.toString() +
-                ", productsOrdered=" + mapAsString.toString() +
+                ", productsOrdered=" + mapAsString +
                 ", restaurantId=" + restaurantId.id +
                 '}';
     }

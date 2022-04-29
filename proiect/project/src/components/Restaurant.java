@@ -1,21 +1,18 @@
 package Components;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Restaurant {
     static long serialRestaurantsNumber = 0;
 
     private Entity<Long> restaurantId;
     private Address address;
     private String name;
-    private List<Product> productsAvailable;
+    private Stock restaurantStock;
     private double commissionOfDelivery;
 
-    public Restaurant(Address address, String name, List<Product> productsAvailable, double commissionOfDelivery) {
+    public Restaurant(Address address, String name, Stock stock, double commissionOfDelivery) {
         this.address = address;
         this.name = name;
-        this.productsAvailable = productsAvailable;
+        this.restaurantStock = stock;
         this.commissionOfDelivery = commissionOfDelivery;
 
         serialRestaurantsNumber += 1;
@@ -39,14 +36,6 @@ public class Restaurant {
         this.name = name;
     }
 
-    public List<Product> getProductsAvailable() {
-        return productsAvailable;
-    }
-
-    public void setProductsAvailable(List<Product> productsAvailable) {
-        this.productsAvailable = productsAvailable;
-    }
-
     public double getCommissionOfDelivery() {
         return commissionOfDelivery;
     }
@@ -59,14 +48,22 @@ public class Restaurant {
         return restaurantId;
     }
 
+    public Stock getRestaurantStock() {
+        return restaurantStock;
+    }
+
+    public void setRestaurantStock(Stock restaurantStock) {
+        this.restaurantStock = restaurantStock;
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +
                 "restaurantId=" + restaurantId +
                 ", address=" + address.toString() +
                 ", name='" + name + '\'' +
-                ", productsAvailable=" + Arrays.toString(productsAvailable.toArray()) +
                 ", commissionOfDelivery=" + commissionOfDelivery +
+                Stock.class.toString() +
                 '}';
     }
 }
