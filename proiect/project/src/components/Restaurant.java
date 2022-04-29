@@ -1,9 +1,12 @@
 package Components;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Restaurant {
-    private long restaurantId;
+    static long serialRestaurantsNumber = 0;
+
+    private Entity<Long> restaurantId;
     private Address address;
     private String name;
     private List<Product> productsAvailable;
@@ -14,6 +17,10 @@ public class Restaurant {
         this.name = name;
         this.productsAvailable = productsAvailable;
         this.commissionOfDelivery = commissionOfDelivery;
+
+        serialRestaurantsNumber += 1;
+
+        this.restaurantId.id = serialRestaurantsNumber;
     }
 
     public Address getAddress() {
@@ -46,5 +53,20 @@ public class Restaurant {
 
     public void setCommissionOfDelivery(double commissionOfDelivery) {
         this.commissionOfDelivery = commissionOfDelivery;
+    }
+
+    public Entity<Long> getRestaurantId() {
+        return restaurantId;
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "restaurantId=" + restaurantId +
+                ", address=" + address.toString() +
+                ", name='" + name + '\'' +
+                ", productsAvailable=" + Arrays.toString(productsAvailable.toArray()) +
+                ", commissionOfDelivery=" + commissionOfDelivery +
+                '}';
     }
 }

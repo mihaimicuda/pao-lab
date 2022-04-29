@@ -1,20 +1,27 @@
 package Components;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-public class AbstractUser {
+public abstract class AbstractUser {
+
+    static long serialOfUserNumber = 0;
+
     protected String firstName, lastName, emailAddress;
-    protected long timestampOfBirth;
+    protected LocalDateTime dateOfBirth;
     protected Address addressOfLiving;
 
-    public AbstractUser(String firstName, String lastName, String emailAddress, long timestampOfBirth, Address addressOfLiving) {
+    protected long id;
+
+    public AbstractUser(String firstName, String lastName, String emailAddress, LocalDateTime timestampOfBirth, Address addressOfLiving) {
+
+        serialOfUserNumber += 1;
+        this.id = serialOfUserNumber;
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
-        this.timestampOfBirth = timestampOfBirth;
+        this.dateOfBirth = timestampOfBirth;
         this.addressOfLiving = addressOfLiving;
     }
 
@@ -42,12 +49,8 @@ public class AbstractUser {
         this.emailAddress = emailAddress;
     }
 
-    public long getTimestampOfBirth() {
-        return timestampOfBirth;
-    }
-
-    public void setTimestampOfBirth(long timestampOfBirth) {
-        this.timestampOfBirth = timestampOfBirth;
+    public LocalDateTime getDateOfBirth() {
+        return dateOfBirth;
     }
 
     public Address getAddressOfLiving() {
@@ -58,14 +61,17 @@ public class AbstractUser {
         this.addressOfLiving = addressOfLiving;
     }
 
-    public String getDateOfBirthString() {
+    public static long getSerialOfUserNumber() {
+        return serialOfUserNumber;
+    }
 
-        Date date = new Date(this.timestampOfBirth);
-
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
-        format.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
-
-        return format.format(date);
+    @Override
+    public String toString() {
+        return "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", dateOfBirth=" + dateOfBirth.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) +
+                ", addressOfLiving=" + addressOfLiving +
+                ", id=" + id;
     }
 }

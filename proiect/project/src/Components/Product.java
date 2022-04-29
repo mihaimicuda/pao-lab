@@ -1,5 +1,6 @@
 package Components;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Product {
@@ -55,4 +56,14 @@ public class Product {
         this.quantity = quantity;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "nameOfProduct='" + nameOfProduct + '\'' +
+                ", unityOfMeasurement='" + unityOfMeasurement + '\'' +
+                ", ingredients=" + Arrays.toString(ingredients.toArray()) +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

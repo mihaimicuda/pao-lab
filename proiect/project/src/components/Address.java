@@ -80,4 +80,18 @@ public class Address {
     public void setFloor(Integer floor) {
         this.floor = floor;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "country='" + country + '\'' +
+                ", county='" + county + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", block='" + block + '\'' +
+                ", appartmentNumber=" + appartmentNumber +
+                ", streetNumber=" + streetNumber +
+                ", floor=" + floor +
+                '}';
+    }
 }

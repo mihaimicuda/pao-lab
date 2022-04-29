@@ -1,20 +1,30 @@
 package Components;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class UserEmployee extends AbstractUser {
-    private long salaryPerMonth;
-    private long timestampOfHire;
-    private String jobName; // manager, deliveryGuy, secretary, etc
+    enum possibleJobs{
+        CEO,
+        Manager,
+        Secretary,
+        DeputyManager,
+        Drivers,
+        CallCenterOperators
+    };
 
-    public UserEmployee(String firstName, String lastName, String emailAddress, long timestampOfBirth, Address addressOfLiving, long salaryPerMonth, long timestampOfHire, String jobName) {
-        super(firstName, lastName, emailAddress, timestampOfBirth, addressOfLiving);
+    private long salaryPerMonth;
+    private LocalDateTime dateOfHire;
+    private possibleJobs jobName;
+
+
+    public UserEmployee(String firstName, String lastName, String emailAddress, LocalDateTime timeOfBirth, Address addressOfLiving, long salaryPerMonth, possibleJobs job) {
+        super(firstName, lastName, emailAddress, timeOfBirth, addressOfLiving);
+
         this.salaryPerMonth = salaryPerMonth;
-        this.timestampOfHire = timestampOfHire;
-        this.jobName = jobName;
+        this.jobName = job;
+
+        this.dateOfHire = LocalDateTime.now();
     }
 
     public long getSalaryPerMonth() {
@@ -25,29 +35,22 @@ public class UserEmployee extends AbstractUser {
         this.salaryPerMonth = salaryPerMonth;
     }
 
-    public long getTimestampOfHire() {
-        return timestampOfHire;
+    public LocalDateTime getDateOfHire() {
+        return dateOfHire;
     }
 
-    public void setTimestampOfHire(long timestampOfHire) {
-        this.timestampOfHire = timestampOfHire;
+    public void setTimeOfHire(LocalDateTime timeOfHire) {
+        this.dateOfHire = timeOfHire;
     }
 
-    public String getJobName() {
-        return jobName;
-    }
 
-    public void setJobName(String jobName) {
-        this.jobName = jobName;
-    }
-    public String getDateOfHireString() {
-
-        Date date = new Date(this.timestampOfHire);
-
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
-        format.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
-
-        return format.format(date);
+    @Override
+    public String toString() {
+        return "UserEmployee{" +
+                AbstractUser.class.toString() +
+                ", salaryPerMonth=" + salaryPerMonth +
+                ", dateOfHire=" + dateOfHire.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) +
+                ", jobName='" + jobName.toString() + '\'' +
+                '}';
     }
 }

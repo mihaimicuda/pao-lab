@@ -5,13 +5,13 @@ import java.util.*;
 public class Order {
     private Address addressOfDelivery, addressOfTake;
     private Map<Product, Integer> productsOrdered;
-    private long restaurantId;
+    private Entity<Long> restaurantId;
 
     public Order(Address addressOfDelivery, Address addressOfTake, Map<Product, Integer> productsOrdered, long restaurantId) {
         this.addressOfDelivery = addressOfDelivery;
         this.addressOfTake = addressOfTake;
         this.productsOrdered = productsOrdered;
-        this.restaurantId = restaurantId;
+        this.restaurantId.id = restaurantId;
     }
 
     public Address getAddressOfDelivery() {
@@ -38,11 +38,21 @@ public class Order {
         this.productsOrdered = productsOrdered;
     }
 
-    public long getRestaurantId() {
-        return restaurantId;
-    }
+    @Override
+    public String toString() {
 
-    public void setRestaurantId(long restaurantId) {
-        this.restaurantId = restaurantId;
+        StringBuilder mapAsString = new StringBuilder("{");
+
+        for (Product key : productsOrdered.keySet()) {
+            mapAsString.append(key + "=" + productsOrdered.get(key) + ", ");
+        }
+        mapAsString.delete(mapAsString.length()-2, mapAsString.length()).append("}");
+
+        return "Order{" +
+                "addressOfDelivery=" + addressOfDelivery.toString() +
+                ", addressOfTake=" + addressOfTake.toString() +
+                ", productsOrdered=" + mapAsString.toString() +
+                ", restaurantId=" + restaurantId.id +
+                '}';
     }
 }
