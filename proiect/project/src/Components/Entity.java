@@ -1,7 +1,7 @@
 package Components;
 
-public class Entity<T> {
-    T id;
+public abstract class Entity<T> {
+    protected T id;
 
     public Entity(T id) {
         this.id = id;
@@ -9,9 +9,5 @@ public class Entity<T> {
 
     public T getId() {
         return id;
-    }
-
-    public void setId(T id) {
-        this.id = id;
     }
 }

@@ -1,23 +1,21 @@
 package Components;
 
-public class Restaurant {
+public class Restaurant extends Entity<Long> {
     static long serialRestaurantsNumber = 0;
 
-    private Entity<Long> restaurantId;
     private Address address;
     private String name;
     private Stock restaurantStock;
     private double commissionOfDelivery;
 
-    public Restaurant(Address address, String name, Stock stock, double commissionOfDelivery) {
-        this.address = address;
-        this.name = name;
-        this.restaurantStock = stock;
-        this.commissionOfDelivery = commissionOfDelivery;
-
+    public Restaurant(Address address, String name, Stock restaurantStock, double commissionOfDelivery) {
+        super(serialRestaurantsNumber);
         serialRestaurantsNumber += 1;
 
-        this.restaurantId.id = serialRestaurantsNumber;
+        this.address = address;
+        this.name = name;
+        this.restaurantStock = restaurantStock;
+        this.commissionOfDelivery = commissionOfDelivery;
     }
 
     public Address getAddress() {
@@ -44,10 +42,6 @@ public class Restaurant {
         this.commissionOfDelivery = commissionOfDelivery;
     }
 
-    public Entity<Long> getRestaurantId() {
-        return restaurantId;
-    }
-
     public Stock getRestaurantStock() {
         return restaurantStock;
     }
@@ -59,7 +53,7 @@ public class Restaurant {
     @Override
     public String toString() {
         return "Restaurant{" +
-                "restaurantId=" + restaurantId +
+                "restaurantId=" + getId()+
                 ", address=" + address.toString() +
                 ", name='" + name + '\'' +
                 ", commissionOfDelivery=" + commissionOfDelivery +

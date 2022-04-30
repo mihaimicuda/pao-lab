@@ -4,26 +4,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class UserEmployee extends AbstractUser {
-    enum possibleJobs{
-        CEO,
-        Manager,
-        Secretary,
-        DeputyManager,
-        Drivers,
-        CallCenterOperators
-    };
 
     private long salaryPerMonth;
     private LocalDateTime dateOfHire;
-    private possibleJobs jobName;
+    private final PossibleJobs jobName;
 
 
-    public UserEmployee(String firstName, String lastName, String emailAddress, LocalDateTime timeOfBirth, Address addressOfLiving, long salaryPerMonth, possibleJobs job) {
+    public UserEmployee(String firstName, String lastName, String emailAddress, LocalDateTime timeOfBirth, Address addressOfLiving, long salaryPerMonth, PossibleJobs job) {
         super(firstName, lastName, emailAddress, timeOfBirth, addressOfLiving);
 
         this.salaryPerMonth = salaryPerMonth;
         this.jobName = job;
-
         this.dateOfHire = LocalDateTime.now();
     }
 
@@ -42,7 +33,6 @@ public class UserEmployee extends AbstractUser {
     public void setTimeOfHire(LocalDateTime timeOfHire) {
         this.dateOfHire = timeOfHire;
     }
-
 
     @Override
     public String toString() {

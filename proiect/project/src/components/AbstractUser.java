@@ -3,7 +3,7 @@ package Components;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public abstract class AbstractUser {
+public abstract class AbstractUser extends Entity<Long> {
 
     static long serialOfUserNumber = 0;
 
@@ -11,12 +11,9 @@ public abstract class AbstractUser {
     protected LocalDateTime dateOfBirth;
     protected Address addressOfLiving;
 
-    protected long id;
-
     public AbstractUser(String firstName, String lastName, String emailAddress, LocalDateTime timestampOfBirth, Address addressOfLiving) {
-
+        super(serialOfUserNumber);
         serialOfUserNumber += 1;
-        this.id = serialOfUserNumber;
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -72,6 +69,6 @@ public abstract class AbstractUser {
                 ", emailAddress='" + emailAddress + '\'' +
                 ", dateOfBirth=" + dateOfBirth.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) +
                 ", addressOfLiving=" + addressOfLiving +
-                ", id=" + id;
+                ", id=" + getId();
     }
 }
