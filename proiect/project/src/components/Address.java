@@ -2,19 +2,15 @@ package Components;
 
 public class Address {
 
-    private String country, county, city, street, block;
+    private String country, city, street;
 
-    private Integer appartmentNumber, streetNumber, floor;
+    private Integer streetNumber;
 
-    public Address(String country, String county, String city, String street, String block, Integer appartmentNumber, Integer streetNumber, Integer floor) {
+    public Address(String country, String city, String street, Integer streetNumber) {
         this.country = country;
-        this.county = county;
         this.city = city;
         this.street = street;
-        this.block = block;
-        this.appartmentNumber = appartmentNumber;
         this.streetNumber = streetNumber;
-        this.floor = floor;
     }
 
     public String getCountry() {
@@ -24,15 +20,7 @@ public class Address {
     public void setCountry(String country) {
         this.country = country;
     }
-
-    public String getCounty() {
-        return county;
-    }
-
-    public void setCounty(String county) {
-        this.county = county;
-    }
-
+    
     public String getCity() {
         return city;
     }
@@ -49,22 +37,6 @@ public class Address {
         this.street = street;
     }
 
-    public String getBlock() {
-        return block;
-    }
-
-    public void setBlock(String block) {
-        this.block = block;
-    }
-
-    public Integer getAppartmentNumber() {
-        return appartmentNumber;
-    }
-
-    public void setAppartmentNumber(Integer appartmentNumber) {
-        this.appartmentNumber = appartmentNumber;
-    }
-
     public Integer getStreetNumber() {
         return streetNumber;
     }
@@ -73,25 +45,14 @@ public class Address {
         this.streetNumber = streetNumber;
     }
 
-    public Integer getFloor() {
-        return floor;
-    }
-
-    public void setFloor(Integer floor) {
-        this.floor = floor;
-    }
 
     @Override
     public String toString() {
         return "Address{" +
                 "country='" + country + '\'' +
-                ", county='" + county + '\'' +
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +
-                ", block='" + block + '\'' +
-                ", appartmentNumber=" + appartmentNumber +
                 ", streetNumber=" + streetNumber +
-                ", floor=" + floor +
                 '}';
     }
 }

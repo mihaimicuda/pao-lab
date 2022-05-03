@@ -10,7 +10,7 @@ public class Services {
     private List<UserEmployee> appDrivers = new ArrayList<UserEmployee>();
     private List<Restaurant> appRestaurants = new ArrayList<Restaurant>();
     private final ReadServices readServices = new ReadServices();
-    
+
     public void addClient() {
         UserConsumer client = readServices.readClient();
         appUser.add(client);

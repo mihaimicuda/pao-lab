@@ -7,28 +7,20 @@ import java.util.*;
 
 public class ReadServices {
     protected Address readAddress(Scanner in) {
-        String country, county, city, street, block;
-        Integer appartmentNumber, streetNumber, floor;
+        String country, city, street;
+        Integer streetNumber;
 
         System.out.println("Enter the country :");
         country = in.nextLine();
-        System.out.println("Enter the county :");
-        county = in.nextLine();
         System.out.println("Enter the city name :");
         city = in.nextLine();
         System.out.println("Enter the street name :");
         street = in.nextLine();
-        System.out.println("Enter the block number/name :");
-        block = in.nextLine();
 
         System.out.println("Enter the street number :");
         streetNumber = in.nextInt();
-        System.out.println("Enter the appartment number :");
-        appartmentNumber = in.nextInt();
-        System.out.println("Enter the floor :");
-        floor = in.nextInt();
 
-        return new Address(country, county, city, street, block, appartmentNumber, streetNumber, floor);
+        return new Address(country, city, street, streetNumber);
     }
 
     protected UserConsumer readClient() {
