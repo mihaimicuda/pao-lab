@@ -1,5 +1,7 @@
 package Components;
 
+import java.util.Map;
+
 public class Restaurant extends Entity<Long> {
     static long serialRestaurantsNumber = 0;
 
@@ -40,6 +42,10 @@ public class Restaurant extends Entity<Long> {
 
     public void setCommissionOfDelivery(double commissionOfDelivery) {
         this.commissionOfDelivery = commissionOfDelivery;
+    }
+
+    public void updateStock(Map<Entity<Long>, Integer> productsOrdered) {
+        restaurantStock.updateStock(productsOrdered);
     }
 
     public Stock getRestaurantStock() {

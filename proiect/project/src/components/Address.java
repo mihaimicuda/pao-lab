@@ -20,7 +20,7 @@ public class Address {
     public void setCountry(String country) {
         this.country = country;
     }
-    
+
     public String getCity() {
         return city;
     }
@@ -44,7 +44,6 @@ public class Address {
     public void setStreetNumber(Integer streetNumber) {
         this.streetNumber = streetNumber;
     }
-
 
     @Override
     public String toString() {

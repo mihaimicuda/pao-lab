@@ -1,5 +1,6 @@
 package Components;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -21,8 +22,16 @@ public class Order {
         return addressOfDelivery;
     }
 
-    public void setAddressOfDelivery(Address addressOfDelivery) {
-        this.addressOfDelivery = addressOfDelivery;
+    public Long getRestaurantId() {
+        return restaurantId.getId();
+    }
+
+    public Map<Entity<Long>, Integer> getProductsOrdered() {
+        return this.productsOrdered;
+    }
+
+    public LocalDateTime getDateTime(){
+        return this.timeOfOrder;
     }
 
     @Override

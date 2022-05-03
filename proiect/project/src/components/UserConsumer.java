@@ -17,6 +17,18 @@ public class UserConsumer extends AbstractUser {
         lastOrders = new ArrayList<>();
     }
 
+    public void addOrder(Order order) {
+        lastOrders.add(order);
+    }
+
+    public Order getLastOrder() {
+        return this.lastOrders.get(lastOrders.size() - 1);
+    }
+
+    public Integer getNumOfOrders() {
+        return this.lastOrders.size();
+    }
+
     @Override
     public String toString() {
         return "UserConsumer {" +

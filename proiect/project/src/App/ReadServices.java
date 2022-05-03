@@ -96,17 +96,17 @@ public class ReadServices {
     protected Stock readStock() {
         Scanner in = new Scanner(System.in);
 
-        Map<Product, Integer> products = new HashMap<Product, Integer>();
+        Map<Entity<Long>, Integer> products = new HashMap<Entity<Long>, Integer>();
         Integer noOfProducts, productNo;
-        Product x;
+        Entity<Long> x;
 
         System.out.println("Enter the number of the product ingredients :");
         noOfProducts = in.nextInt();
         in.nextLine(); // consume the \n
 
         for (int i = 0; i < noOfProducts; i++) {
-            System.out.println("Enter the details of " + i + " product :");
-            x = readProduct();
+            System.out.println("Enter the index of " + i + " product :");
+            x = new Entity<Long>(in.nextLong());
             System.out.println("Enter the quantity of this product :");
             productNo = in.nextInt();
 

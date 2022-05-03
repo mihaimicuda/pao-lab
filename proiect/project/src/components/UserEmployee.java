@@ -9,6 +9,7 @@ public class UserEmployee extends AbstractUser {
     private long salaryPerMonth;
     private LocalDate dateOfHire;
     private final PossibleJobs jobName;
+//    private double x, y; // coordinates of his position on the map
 
     public UserEmployee(String firstName, String lastName, String emailAddress, LocalDate timeOfBirth, Address addressOfLiving, long salaryPerMonth, PossibleJobs job) {
         super(firstName, lastName, emailAddress, timeOfBirth, addressOfLiving);
