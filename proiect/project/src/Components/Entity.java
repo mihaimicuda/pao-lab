@@ -1,6 +1,6 @@
 package Components;
 
-public abstract class Entity<T> {
+public class Entity<T> {
     protected T id;
 
     public Entity(T id) {

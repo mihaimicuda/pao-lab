@@ -1,31 +1,19 @@
 package Components;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Map;
 
 public class Stock {
-    private Map<Product, Long> products;
-    private LocalDateTime dateLastSupply;
+    private Map<Product, Integer> products;
+    private LocalDate dateLastSupply;
 
-    public Stock(Map<Product, Long> products, LocalDateTime dateLastSupply) {
+    public Stock(Map<Product, Integer> products) {
         this.products = products;
-        this.dateLastSupply = dateLastSupply;
+        this.dateLastSupply = LocalDate.now();
     }
 
-    public Map<Product, Long> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Map<Product, Long> products) {
-        this.products = products;
-    }
-
-    public LocalDateTime getDateLastSupply() {
+    public LocalDate getDateLastSupply() {
         return dateLastSupply;
-    }
-
-    public void setDateLastSupply(LocalDateTime dateLastSupply) {
-        this.dateLastSupply = dateLastSupply;
     }
 
     @Override
@@ -33,7 +21,7 @@ public class Stock {
         StringBuilder mapAsString = new StringBuilder("{");
 
         for (Product key : products.keySet()) {
-            mapAsString.append(key + "=" + products.get(key) + ", ");
+            mapAsString.append(key + " x " + products.get(key) + ", ");
         }
         mapAsString.delete(mapAsString.length()-2, mapAsString.length()).append("}");
 

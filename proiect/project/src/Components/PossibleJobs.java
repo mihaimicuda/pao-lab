@@ -1,12 +1,10 @@
 package Components;
 
-public abstract class PossibleJobs {
-    enum possibleJobs{
+public enum PossibleJobs{
         CEO,
         Manager,
         Secretary,
-        DeputyManager,
-        Drivers,
-        CallCenterOperators
-    };
+        Deputy_Manager,
+        Driver,
+        Call_Center_Operator
 }

@@ -1,21 +1,21 @@
 package Components;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class UserEmployee extends AbstractUser {
 
     private long salaryPerMonth;
-    private LocalDateTime dateOfHire;
+    private LocalDate dateOfHire;
     private final PossibleJobs jobName;
 
-
-    public UserEmployee(String firstName, String lastName, String emailAddress, LocalDateTime timeOfBirth, Address addressOfLiving, long salaryPerMonth, PossibleJobs job) {
+    public UserEmployee(String firstName, String lastName, String emailAddress, LocalDate timeOfBirth, Address addressOfLiving, long salaryPerMonth, PossibleJobs job) {
         super(firstName, lastName, emailAddress, timeOfBirth, addressOfLiving);
 
         this.salaryPerMonth = salaryPerMonth;
         this.jobName = job;
-        this.dateOfHire = LocalDateTime.now();
+        this.dateOfHire = LocalDate.now();
     }
 
     public long getSalaryPerMonth() {
@@ -26,18 +26,11 @@ public class UserEmployee extends AbstractUser {
         this.salaryPerMonth = salaryPerMonth;
     }
 
-    public LocalDateTime getDateOfHire() {
-        return dateOfHire;
-    }
-
-    public void setTimeOfHire(LocalDateTime timeOfHire) {
-        this.dateOfHire = timeOfHire;
-    }
 
     @Override
     public String toString() {
         return "UserEmployee{" +
-                AbstractUser.class.toString() +
+                super.toString() +
                 ", salaryPerMonth=" + salaryPerMonth +
                 ", dateOfHire=" + dateOfHire.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) +
                 ", jobName='" + jobName.toString() + '\'' +

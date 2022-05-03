@@ -1,17 +1,20 @@
 package Components;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Order {
-    private Address addressOfDelivery, addressOfTake;
-    private Map<Product, Integer> productsOrdered;
+    private Address addressOfDelivery;
+    private Map<Entity<Long>, Integer> productsOrdered;
     private Entity<Long> restaurantId;
+    private LocalDateTime timeOfOrder;
 
-    public Order(Address addressOfDelivery, Address addressOfTake, Map<Product, Integer> productsOrdered, long restaurantId) {
+    public Order(Address addressOfDelivery, Map<Entity<Long>, Integer> productsOrdered, long restaurantId) {
         this.addressOfDelivery = addressOfDelivery;
-        this.addressOfTake = addressOfTake;
         this.productsOrdered = productsOrdered;
-        this.restaurantId.id = restaurantId;
+        this.restaurantId = new Entity<Long>(restaurantId);
+        this.timeOfOrder = LocalDateTime.now();
     }
 
     public Address getAddressOfDelivery() {
@@ -22,37 +25,21 @@ public class Order {
         this.addressOfDelivery = addressOfDelivery;
     }
 
-    public Address getAddressOfTake() {
-        return addressOfTake;
-    }
-
-    public void setAddressOfTake(Address addressOfTake) {
-        this.addressOfTake = addressOfTake;
-    }
-
-    public Map<Product, Integer> getProductsOrdered() {
-        return productsOrdered;
-    }
-
-    public void setProductsOrdered(Map<Product, Integer> productsOrdered) {
-        this.productsOrdered = productsOrdered;
-    }
-
     @Override
     public String toString() {
 
         StringBuilder mapAsString = new StringBuilder("{");
 
-        for (Product key : productsOrdered.keySet()) {
+        for (Entity<Long> key : productsOrdered.keySet()) {
             mapAsString.append(key + "=" + productsOrdered.get(key) + ", ");
         }
         mapAsString.delete(mapAsString.length()-2, mapAsString.length()).append("}");
 
         return "Order{" +
                 "addressOfDelivery=" + addressOfDelivery.toString() +
-                ", addressOfTake=" + addressOfTake.toString() +
                 ", productsOrdered=" + mapAsString +
                 ", restaurantId=" + restaurantId.id +
-                '}';
+                ", timeOfOrder=" + timeOfOrder.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) +
+        '}';
     }
 }

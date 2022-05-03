@@ -3,12 +3,17 @@ package Components;
 import java.util.Arrays;
 import java.util.List;
 
-public class Product {
+public class Product extends Entity<Long>{
+    static long serialProductsNumber = 0;
+
     private String nameOfProduct, unityOfMeasurement;
     private List<String> ingredients;
     private double price, quantity;
 
     public Product(String nameOfProduct, String unityOfMeasurement, List<String> ingredients, double price, double quantity) {
+        super(serialProductsNumber);
+        serialProductsNumber += 1;
+
         this.nameOfProduct = nameOfProduct;
         this.unityOfMeasurement = unityOfMeasurement;
         this.ingredients = ingredients;

@@ -1,6 +1,6 @@
 package Components;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public abstract class AbstractUser extends Entity<Long> {
@@ -8,10 +8,10 @@ public abstract class AbstractUser extends Entity<Long> {
     static long serialOfUserNumber = 0;
 
     protected String firstName, lastName, emailAddress;
-    protected LocalDateTime dateOfBirth;
+    protected LocalDate dateOfBirth;
     protected Address addressOfLiving;
 
-    public AbstractUser(String firstName, String lastName, String emailAddress, LocalDateTime timestampOfBirth, Address addressOfLiving) {
+    public AbstractUser(String firstName, String lastName, String emailAddress, LocalDate timestampOfBirth, Address addressOfLiving) {
         super(serialOfUserNumber);
         serialOfUserNumber += 1;
 
@@ -44,10 +44,6 @@ public abstract class AbstractUser extends Entity<Long> {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
-    }
-
-    public LocalDateTime getDateOfBirth() {
-        return dateOfBirth;
     }
 
     public Address getAddressOfLiving() {
