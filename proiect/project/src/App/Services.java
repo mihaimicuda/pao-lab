@@ -12,11 +12,11 @@ public class Services {
 
     private final ReadServices readServices = ReadServices.getInstance();
 
-    private List<UserConsumer> appUser = new ArrayList<UserConsumer>();
-    private List<UserEmployee> appDrivers = new ArrayList<UserEmployee>();
-    private List<LocalDateTime> driversAvailability = new ArrayList<LocalDateTime>();
-    private List<Restaurant> appRestaurants = new ArrayList<Restaurant>();
-    private List<Product> restaurantProducts = new ArrayList<Product>();
+    private List<UserConsumer> appUser = new ArrayList<>();
+    private List<UserEmployee> appDrivers = new ArrayList<>();
+    private List<LocalDateTime> driversAvailability = new ArrayList<>();
+    private List<Restaurant> appRestaurants = new ArrayList<>();
+    private List<Product> restaurantProducts = new ArrayList<>();
 
     public static Services getInstance() {
         if (servicesInstance == null)
@@ -41,7 +41,8 @@ public class Services {
         System.out.println("10. Show the users that ordered today.");
         System.out.println("11. Show top 3 users that have ordered most times.");
         System.out.println("12. Increase the salary for top 2 most active drivers.");
-        System.out.println("13. EXIT");
+        System.out.println("13. For each user, print the sum of his last order.");
+        System.out.println("14. EXIT");
         System.out.println("     ? ? ? ? ?   How can I help you   ? ? ? ? ? ");
         System.out.println(" - Introduce the option number that you choose : ");
     }
@@ -201,5 +202,11 @@ public class Services {
 
     public void increaseSalaryForTop2MostActiveDrivers() {
         appDrivers.stream().sorted(Comparator.comparingLong(this::getNoOfOrders).reversed()).limit(2).toList().forEach((UserEmployee driver) -> driver.increaseSalaryByXPercent(10));
+    }
+
+    public void printSumLastOrderForEachUser() {
+        for (var user : appUser) {
+            System.out.println("User " + user.getFullName() + " was ordered in value of " + user.returnSumLastOrder(restaurantProducts) + " in the date of " + user.returnTimeOfLastOrder());
+        }
     }
 }

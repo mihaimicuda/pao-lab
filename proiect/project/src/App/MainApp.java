@@ -29,6 +29,7 @@ public class MainApp {
                 case 10 -> services.printUserThatOrderedToday();
                 case 11 -> services.printFirst3UsersWithMaxNumOrders();
                 case 12 -> services.increaseSalaryForTop2MostActiveDrivers();
+                case 13 -> services.printSumLastOrderForEachUser();
                 default -> exit = true;
             }
         }

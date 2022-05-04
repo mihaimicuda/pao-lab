@@ -1,5 +1,7 @@
 package Components;
 
+import App.Services;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -41,6 +43,14 @@ public class Order {
 
     public Long getDriverID() {
         return driverID.getId();
+    }
+
+    public double calculateTotalFee(List<Product> restaurantProducts) {
+        double sum = 0.0;
+        for (var id : productsOrdered.keySet()) {
+            sum += restaurantProducts.get(Math.toIntExact(id.getId())).getPrice() * productsOrdered.get(id) ; // sum(price * quantity)
+        }
+        return sum;
     }
 
     @Override
