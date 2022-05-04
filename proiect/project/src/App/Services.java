@@ -5,6 +5,7 @@ import Components.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Services {
     private static Services servicesInstance = null;
@@ -29,13 +30,17 @@ public class Services {
         System.out.println("    Here are the options that we have implemented at this moment : ");
         System.out.println("1. Add a user of the app.");
         System.out.println("2. Add an employee of the app.");
-        System.out.println("3. Add a food product.");
-        System.out.println("4. Add a restaurant for the app.");
-        System.out.println("5. Push a Food Order");
-        System.out.println("6. Show the users that ordered today.");
-        System.out.println("7. Show top 3 users that have ordered most times.");
-        System.out.println("8. Increase the salary for top 2 most active drivers.");
+        System.out.println("3. Add a restaurant for the app.");
+        System.out.println("4. Show user list of the food delivery app.");
+        System.out.println("5. Show employee list of the app.");
+        System.out.println("6. Show restaurants.");
+        System.out.println("7. Push a Food Order");
+        System.out.println("8. Show the users that ordered today.");
+        System.out.println("9. Show top 3 users that have ordered most times.");
+        System.out.println("10. Increase the salary for top 2 most active drivers.");
+        System.out.println("11. EXIT");
         System.out.println("     ? ? ? ? ?   How can I help you   ? ? ? ? ? ");
+        System.out.println(" - Introduce the option number that you choose : ");
     }
 
     public void addClient() {
@@ -163,7 +168,7 @@ public class Services {
         System.out.println("The user with the third maximum number of the orders is : " + appUser.get(poz3).toString());
     }
 
-    public Integer getDriverIndex() {
+    private Integer getDriverIndex() {
         Integer position = 0;
         for (Integer i = 0; i < appDrivers.size(); i++) {
             if (driversAvailability.get(i).isAfter(LocalDateTime.now())) {
@@ -173,7 +178,7 @@ public class Services {
         return -1; // we don't have disponible drivers and we have to wait
     }
 
-    public Long getNoOfOrders(UserEmployee driver) {
+    private Long getNoOfOrders(UserEmployee driver) {
         Long counter = 0L;
         for (UserConsumer user : appUser) {
             counter += user.getNoOfOrdersForADriver(driver);
@@ -182,6 +187,6 @@ public class Services {
     }
 
     public void increaseSalaryForTop2MostActiveDrivers() {
-
+        appDrivers.stream().sorted(Comparator.comparingLong(this::getNoOfOrders).reversed()).limit(2).toList().forEach((UserEmployee driver) -> driver.increaseSalaryByXPercent(10));
     }
 }
