@@ -16,6 +16,7 @@ public class Services {
     private List<UserEmployee> appDrivers = new ArrayList<UserEmployee>();
     private List<LocalDateTime> driversAvailability = new ArrayList<LocalDateTime>();
     private List<Restaurant> appRestaurants = new ArrayList<Restaurant>();
+    private List<Product> restaurantProducts = new ArrayList<Product>();
 
     public static Services getInstance() {
         if (servicesInstance == null)
@@ -30,15 +31,17 @@ public class Services {
         System.out.println("    Here are the options that we have implemented at this moment : ");
         System.out.println("1. Add a user of the app.");
         System.out.println("2. Add an employee of the app.");
-        System.out.println("3. Add a restaurant for the app.");
-        System.out.println("4. Show user list of the food delivery app.");
-        System.out.println("5. Show employee list of the app.");
-        System.out.println("6. Show restaurants.");
-        System.out.println("7. Push a Food Order");
-        System.out.println("8. Show the users that ordered today.");
-        System.out.println("9. Show top 3 users that have ordered most times.");
-        System.out.println("10. Increase the salary for top 2 most active drivers.");
-        System.out.println("11. EXIT");
+        System.out.println("3. Add a product.");
+        System.out.println("4. Add a restaurant for the app.");
+        System.out.println("5. Show user list of the food delivery app.");
+        System.out.println("6. Show employee list of the app.");
+        System.out.println("7. Show products.");
+        System.out.println("8. Show restaurants.");
+        System.out.println("9. Push a Food Order");
+        System.out.println("10. Show the users that ordered today.");
+        System.out.println("11. Show top 3 users that have ordered most times.");
+        System.out.println("12. Increase the salary for top 2 most active drivers.");
+        System.out.println("13. EXIT");
         System.out.println("     ? ? ? ? ?   How can I help you   ? ? ? ? ? ");
         System.out.println(" - Introduce the option number that you choose : ");
     }
@@ -57,6 +60,16 @@ public class Services {
     public void viewClients() {
         for (var user : appUser) {
             System.out.println(user.toString());
+        }
+    }
+
+    public void addProduct() {
+        restaurantProducts.add(readServices.readProduct());
+    }
+
+    public void viewProducts() {
+        for (Product product : restaurantProducts) {
+            System.out.println(product.toString());
         }
     }
 
