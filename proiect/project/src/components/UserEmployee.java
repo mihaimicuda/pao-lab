@@ -23,10 +23,13 @@ public class UserEmployee extends AbstractUser {
         return salaryPerMonth;
     }
 
-    public void setSalaryPerMonth(long salaryPerMonth) {
-        this.salaryPerMonth = salaryPerMonth;
+    public void increaseSalaryByXPercent(Integer x) {
+        this.salaryPerMonth += (long)(salaryPerMonth * x) / 100;
     }
 
+    public String getJobName() {
+        return jobName.name();
+    }
 
     @Override
     public String toString() {

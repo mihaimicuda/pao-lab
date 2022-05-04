@@ -7,19 +7,46 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Services {
+    private static Services servicesInstance = null;
+
+    private final ReadServices readServices = ReadServices.getInstance();
+
     private List<UserConsumer> appUser = new ArrayList<UserConsumer>();
     private List<UserEmployee> appDrivers = new ArrayList<UserEmployee>();
     private List<LocalDateTime> driversAvailability = new ArrayList<LocalDateTime>();
     private List<Restaurant> appRestaurants = new ArrayList<Restaurant>();
-    private final ReadServices readServices = new ReadServices();
+
+    public static Services getInstance() {
+        if (servicesInstance == null)
+            servicesInstance = new Services();
+        return servicesInstance;
+    }
+
+    public final void showMenu() {
+        System.out.println("# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #");
+        System.out.println("# # # # #   Welcome to out delivery platform console App   # # # # #");
+        System.out.println("# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #");
+        System.out.println("    Here are the options that we have implemented at this moment : ");
+        System.out.println("1. Add a user of the app.");
+        System.out.println("2. Add an employee of the app.");
+        System.out.println("3. Add a food product.");
+        System.out.println("4. Add a restaurant for the app.");
+        System.out.println("5. Push a Food Order");
+        System.out.println("6. Show the users that ordered today.");
+        System.out.println("7. Show top 3 users that have ordered most times.");
+        System.out.println("8. Increase the salary for top 2 most active drivers.");
+        System.out.println("     ? ? ? ? ?   How can I help you   ? ? ? ? ? ");
+    }
 
     public void addClient() {
         UserConsumer client = readServices.readClient();
         appUser.add(client);
+        sortUsersByFullName();
     }
 
     public void addClient(UserConsumer client) {
         appUser.add(client);
+        sortUsersByFullName();
     }
 
     public void viewClients() {
@@ -36,6 +63,14 @@ public class Services {
     public void addDriver(UserEmployee driver) {
         appDrivers.add(driver);
         driversAvailability.add(LocalDateTime.now());
+    }
+
+    public void sortUsersByFullName() {
+        Collections.sort(appUser, new Comparator<UserConsumer>() {
+            public int compare(UserConsumer o1, UserConsumer o2) {
+                return Integer.compare(0, o1.getFirstName().compareTo(o2.getFirstName()));
+            }
+        });
     }
 
     public void viewDrivers() {
@@ -136,5 +171,17 @@ public class Services {
             }
         }
         return -1; // we don't have disponible drivers and we have to wait
+    }
+
+    public Long getNoOfOrders(UserEmployee driver) {
+        Long counter = 0L;
+        for (UserConsumer user : appUser) {
+            counter += user.getNoOfOrdersForADriver(driver);
+        }
+        return counter;
+    }
+
+    public void increaseSalaryForTop2MostActiveDrivers() {
+
     }
 }

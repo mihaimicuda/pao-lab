@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserConsumer extends AbstractUser {
 
@@ -27,6 +28,16 @@ public class UserConsumer extends AbstractUser {
 
     public Integer getNumOfOrders() {
         return this.lastOrders.size();
+    }
+
+    public Long getNoOfOrdersForADriver(UserEmployee driver) {
+        Long counter = 0L;
+        for (Order order : lastOrders) {
+            if (Objects.equals(driver.getId(), order.getDriverID())) {
+                counter += 1;
+            }
+        }
+        return counter;
     }
 
     @Override

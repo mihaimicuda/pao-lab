@@ -8,7 +8,7 @@ import java.util.*;
 public class Order {
     private Address addressOfDelivery;
     private Map<Entity<Long>, Integer> productsOrdered;
-    private Entity<Long> restaurantId;
+    private Entity<Long> restaurantId, driverID;
     private LocalDateTime timeOfOrder;
 
     public Order(Address addressOfDelivery, Map<Entity<Long>, Integer> productsOrdered, long restaurantId) {
@@ -16,6 +16,7 @@ public class Order {
         this.productsOrdered = productsOrdered;
         this.restaurantId = new Entity<Long>(restaurantId);
         this.timeOfOrder = LocalDateTime.now();
+        this.driverID = new Entity<Long>(-1L);
     }
 
     public Address getAddressOfDelivery() {
@@ -32,6 +33,14 @@ public class Order {
 
     public LocalDateTime getDateTime(){
         return this.timeOfOrder;
+    }
+
+    public void setDriverID(Long id) {
+        this.driverID.id = id;
+    }
+
+    public Long getDriverID() {
+        return driverID.getId();
     }
 
     @Override

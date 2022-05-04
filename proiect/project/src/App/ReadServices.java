@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class ReadServices {
+
+    private static ReadServices readServicesInstance = null;
+
     protected Address readAddress(Scanner in) {
         String country, city, street;
         Integer streetNumber;
@@ -165,6 +168,12 @@ public class ReadServices {
             productsOrdered.put(new Entity<Long>(x), productNo);
         }
         return new Order(addressOfDelivery, productsOrdered, restaurantId);
+    }
+
+    public static ReadServices getInstance() {
+        if (readServicesInstance == null)
+            readServicesInstance = new ReadServices();
+        return readServicesInstance;
     }
 
 }
