@@ -71,7 +71,7 @@ public class Services {
     }
 
     public void sortUsersByFullName() {
-        Collections.sort(appUser, new Comparator<UserConsumer>() {
+        appUser.sort(new Comparator<UserConsumer>() {
             public int compare(UserConsumer o1, UserConsumer o2) {
                 return Integer.compare(0, o1.getFirstName().compareTo(o2.getFirstName()));
             }
