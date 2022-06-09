@@ -4,69 +4,79 @@ import ro.unibuc.lab10.diplomas.model.Diploma;
 import ro.unibuc.lab10.diplomas.model.Specialization;
 import ro.unibuc.lab10.diplomas.service.DiplomaService;
 
-import javax.swing.*;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.ListModel;
 
 public class DiplomaForm {
     private JPanel rootPanel;
-    private JLabel seriesLb1;
+    private JLabel seriesLbl;
     private JTextField seriesTxt;
-    private JTextField graduatedTxt;
     private JLabel graduateLbl;
-    private JTextField yearTxt;
+    private JTextField graduateTxt;
     private JLabel yearLbl;
+    private JTextField yearTxt;
     private JLabel facultyLbl;
     private JTextField facultyTxt;
     private JLabel specializationLbl;
-    private JComboBox specializationCombo;
+    private JComboBox specializationCmb;
     private JLabel gradeLbl;
     private JTextField gradeTxt;
-    private JButton addDiplomaButton;
+    private JButton addBtn;
     private JList diplomaList;
 
     private ComboBoxModel<Specialization> specializationComboBoxModel;
-    private ListModel<Diploma> diplomaListModel;
+    private DefaultListModel<Diploma> diplomaListModel;
 
     private DiplomaService diplomaService = new DiplomaService();
 
     public DiplomaForm() {
         specializationComboBoxModel = new DefaultComboBoxModel<>(Specialization.values());
-        specializationCombo.setModel(specializationComboBoxModel);
+        specializationCmb.setModel(specializationComboBoxModel);
 
         diplomaListModel = new DefaultListModel<>();
         diplomaList.setModel(diplomaListModel);
         displayDiplomas();
 
-        addDiplomaButton.addActionListener(e -> {
+
+        addBtn.addActionListener(e -> {
             String series = seriesTxt.getText();
-            String graduate = gradeTxt.getText();
-            int year = Integer.parseInt(yearTxt.getText());
+            String graduate = graduateTxt.getText();
+            int year = Integer.valueOf(yearTxt.getText());
             String faculty = facultyTxt.getText();
-            Specialization specialization = (Specialization) specializationCombo.getSelectedItem();
-            double grade = Double.parseDouble(gradeTxt.getText());
+            Specialization specialization = (Specialization) specializationCmb.getSelectedItem();
+            double grade = Double.valueOf(gradeTxt.getText());
 
             diplomaService.save(new Diploma(series, graduate, year, faculty, specialization, grade));
 
             clearComponents();
+
+            displayDiplomas();
         });
     }
 
     private void displayDiplomas() {
-        diplomaService.getAll().forEach(diploma -> diplomaListModel.);
+        diplomaListModel.clear();
+        diplomaService.getAll().forEach(diploma -> diplomaListModel.addElement(diploma));
     }
 
     private void clearComponents() {
         seriesTxt.setText("");
-        gradeTxt.setText("");
+        graduateTxt.setText("");
         yearTxt.setText("");
-        graduatedTxt.setText("");
         facultyTxt.setText("");
+        specializationCmb.setSelectedIndex(0);
+        gradeTxt.setText("");
     }
 
     public JPanel getRootPanel() {
         return rootPanel;
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }

@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="918e5" class="javax.swing.JLabel" binding="seriesLb1">
+      <component id="17aa1" class="javax.swing.JLabel" binding="seriesLbl">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -16,12 +16,12 @@
           <text value="Series:"/>
         </properties>
       </component>
-      <vspacer id="c167b">
+      <vspacer id="bb787">
         <constraints>
           <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="a54c3" class="javax.swing.JTextField" binding="seriesTxt">
+      <component id="8c808" class="javax.swing.JTextField" binding="seriesTxt">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -29,7 +29,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="c7d2b" class="javax.swing.JLabel" binding="graduateLbl">
+      <component id="ea049" class="javax.swing.JLabel" binding="graduateLbl">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -37,26 +37,23 @@
           <text value="Graduate:"/>
         </properties>
       </component>
-      <component id="c0355" class="javax.swing.JTextField" binding="graduatedTxt">
+      <component id="4da40" class="javax.swing.JTextField" binding="graduateTxt">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
+        <properties/>
       </component>
-      <component id="635a4" class="javax.swing.JLabel" binding="yearLbl">
+      <component id="a0872" class="javax.swing.JLabel" binding="yearLbl">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <enabled value="true"/>
-          <text value="Year :"/>
+          <text value="Year:"/>
         </properties>
       </component>
-      <component id="855e6" class="javax.swing.JTextField" binding="yearTxt">
+      <component id="691d7" class="javax.swing.JTextField" binding="yearTxt">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -64,7 +61,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="18c95" class="javax.swing.JLabel" binding="facultyLbl" custom-create="true">
+      <component id="e59df" class="javax.swing.JLabel" binding="facultyLbl">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -72,7 +69,7 @@
           <text value="Faculty:"/>
         </properties>
       </component>
-      <component id="a0039" class="javax.swing.JTextField" binding="facultyTxt">
+      <component id="abae3" class="javax.swing.JTextField" binding="facultyTxt">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -80,7 +77,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="958ab" class="javax.swing.JLabel" binding="specializationLbl">
+      <component id="9da8f" class="javax.swing.JLabel" binding="specializationLbl">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -88,13 +85,13 @@
           <text value="Specialization:"/>
         </properties>
       </component>
-      <component id="b6f1e" class="javax.swing.JComboBox" binding="specializationCombo">
+      <component id="578e" class="javax.swing.JComboBox" binding="specializationCmb">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
       </component>
-      <component id="b091c" class="javax.swing.JLabel" binding="gradeLbl">
+      <component id="fbc43" class="javax.swing.JLabel" binding="gradeLbl">
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -102,7 +99,7 @@
           <text value="Grade:"/>
         </properties>
       </component>
-      <component id="82b77" class="javax.swing.JTextField" binding="gradeTxt">
+      <component id="14014" class="javax.swing.JTextField" binding="gradeTxt">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -110,15 +107,15 @@
         </constraints>
         <properties/>
       </component>
-      <component id="97e8d" class="javax.swing.JButton" binding="addDiplomaButton" default-binding="true">
+      <component id="f7121" class="javax.swing.JButton" binding="addBtn">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Add diploma"/>
         </properties>
       </component>
-      <component id="ce302" class="javax.swing.JList" binding="diplomaList">
+      <component id="4e5bf" class="javax.swing.JList" binding="diplomaList">
         <constraints>
           <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
